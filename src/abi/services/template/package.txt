@@ -1,14 +1,14 @@
 {
-  "name": "@evm-abis/{{CHAIN_ID}}-{{CONTRACT_ADDRESS}}-abi",
+  "name": "@evm-abis/{{CHAIN_ID}}-{{CONTRACT_ADDRESS}}",
   "version": "{{VERSION}}",
-  "description": "ABI for contract {{CONTRACT_ADDRESS}} on {{CHAIN_NAME}}",
+  "description": "ABI for contract {{CONTRACT_ADDRESS}} on {{CHAIN_NAME}} ({{CHAIN_ID}})",
   "homepage": "{{ABI_SOURCE_URL}}",
   "main": "index.js",
   "types": "index.d.ts",
   "license": "MIT",
-  "keywords": ["abi", "eth", "ethereum", "typescript", "web3"],
+  "keywords": ["abi", "eth", "ethereum", "typescript", "web3", "evm", "solidity"],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/evm-abis/abis.git"
+    "url": "git+https://github.com/evm-abis/abis-api.git"
   }
 }
