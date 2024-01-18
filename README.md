@@ -1,30 +1,46 @@
 # EVM ABI
 
+EVM ABI is a project that simplifies the import of contract ABIs into your project by providing the contract address.
+
+## Table of Contents
+- [EVM ABI](#evm-abi)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Why This Project?](#why-this-project)
+  - [API](#api)
+    - [Supported Chains](#supported-chains)
+  - [Example Usage](#example-usage)
+    - [By URL](#by-url)
+    - [By Package Name](#by-package-name)
+
+## Installation
+
+To install the package, use the following npm command:
+
+```typescript
+npm install @evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5
+```
+
+
 ## Why This Project?
+Currently, obtaining a contract's ABI involves downloading it from Etherscan (or Sourcify) and manually pasting it into your project. This project aims to solve this problem by providing a simple way to import a contract's ABI into a project by providing the contract address.
 
-Currently, obtaining a contract's ABI involves downloading it from Etherscan (or Sourcify) and manually pasting it into your project. Interacting with standard contracts like ERC20 requires either copying the ABI into your project or importing it from libraries like Wagmi. This presents 2 primary issues:
+Existing Tools
+There are already two tools that download the ABI and generate code by providing the contract address:
 
-1. Lack of a dedicated package to centralize all ERC/EIP ABIs, independently of a library.
-2. No straightforward method to import a contract's ABI into a project.
-
-This project aims to address those problems by providing a simple way to import a contract's ABI into a project by providing the contract address.
-
-There is already 2 tools that will download ABI and generate code by providing the contract adress.
-- Eth-Sdk: https://github.com/dethcrypto/eth-sdk
-- Wagmi Cli: https://wagmi.sh/cli/getting-started#add-contracts-and-plugins
-
-But both or linked to an other library (respectively etherJS and Wagmi).
+Eth-Sdk: https://github.com/dethcrypto/eth-sdk
+Wagmi Cli: https://wagmi.sh/cli/getting-started#add-contracts-and-plugins
+However, these two tools are linked to another library (respectively etherJS and Wagmi).
 
 ## API
 
-As creating an npm package for every existing contract is impractical, we provide an API to generate these packages on demand. The API exposes three routes:
+As it is impractical to create an npm package for every existing contract, we provide an API to generate these packages on demand. The API exposes three routes:
 
 - `GET https://evm-abis.xyz/chains` to retrieve compatible chains.
-- `GET https://evm-abis.xyz/:chainId/:contractAddress` to obtain the NPM package containing the ABI of a contract on a given chainId.
-- `POST https://evm-abis.xyz/:chainId/:contractAddress` to retrieve information about the NPM package containing the ABI of a contract on a given chainId.
+- `GET https://evm-abis.xyz/:chainId/:contractAddress` to obtain the NPM package containing the ABI of a contract on a given chain.
+- `POST https://evm-abis.xyz/:chainId/:contractAddress` to retrieve information about the NPM package containing the ABI of a contract on a given chain.
+-
 If an NPM package does not exist for a given contract, the API will create and publish it on npm.
-
-We get the ABI from sourcify then from Etherscan if not available.
 
 ### Supported Chains
 - Ethereum Mainnet
@@ -47,29 +63,29 @@ We get the ABI from sourcify then from Etherscan if not available.
 - Fantom Opera
 - Fantom Testnet
 
-### Importing Packages
+## Example Usage
 
-#### By URL
+### By URL
 ```bash
 # AAVE contract on mainnet (ChainId: 1)
-npm install https://evm-abis.xyz/1/0x50327c6c5a14DCaDE707ABad2E27eB517df87AB5/abi
+npm install https://evm-abis.xyz/1/0x50327c6c5a14DCaDE707ABad2E27eB517df87AB5
 ```
 
 This generates an entry in package.json:
 ```json
   "dependencies": {
-    "@evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-abi": "https://evm-abis.xyz/1/0x50327c6c5a14DCaDE707ABad2E27eB517df87AB5/abi"
+    "@evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-abi": "https://evm-abis.xyz/1/0x50327c6c5a14DCaDE707ABad2E27eB517df87AB5"
   }
 ```
 
 You can also rename the package entry after adding it:
 ```json
   "dependencies": {
-    "@evm-abis/mainnet-aave": "https://evm-abis.xyz/1/0x50327c6c5a14DCaDE707ABad2E27eB517df87AB5/abi"
+    "@evm-abis/mainnet-aave": "https://evm-abis.xyz/1/0x50327c6c5a14DCaDE707ABad2E27eB517df87AB5"
   }
 ```
 
-#### By Package Name
+### By Package Name
 To import by package name, first, obtain/create the package name using the `POST https://evm-abis.xyz/:chainId/:contractAddress` route:
 
 ```bash
@@ -80,13 +96,13 @@ Receive:
 ```json
   {
     "name": "@evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-abi@1.0.3",
-    "url": "https://registry.npmjs.org/@evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-abi/-/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-abi-1.0.3.tgz"
+    "url": "https://registry.npmjs.org/@evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5/-/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-1.0.3.tgz"
   }
 ```
 
 Then install the package:
 ```bash
-  npm install @evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5-abi@1.0.3
+  npm install @evm-abis/1-0x50327c6c5a14dcade707abad2e27eb517df87ab5@1.0.3
 ```
 
 This solution ensures dependency only on the npmjs registry, allowing for optimal use of caching systems.
