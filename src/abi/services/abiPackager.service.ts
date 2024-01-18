@@ -122,12 +122,12 @@ async function getReadme(chainId: ChainId, contractAddress: string, abi: string)
  * Get the package dir name
  */
 function getPackageName(chainId: ChainId, contractAddress: string): string {
-  return `@evm-abis/${chainId}-${contractAddress}-abi`;
+  return `@evm-abis/${chainId}-${contractAddress}`;
 }
 
 /**
  * Get the current package version
  */
 function getCurrentAbiPackageVersion(): string {
-  return '1.0.5';
+  return '1.0.6';
 }

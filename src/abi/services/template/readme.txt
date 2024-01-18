@@ -1,8 +1,8 @@
 # ABI of contract {{CONTRACT_ADDRESS}} on {{CHAIN_NAME}}
 
-Chain: **{{CHAIN_NAME}}** ({{CHAIN_ID}})
-Contract Address: **{{CONTRACT_ADDRESS}}**
-Source: **{{ABI_SOURCE_URL}}**
+- Chain: **{{CHAIN_NAME}}** ({{CHAIN_ID}})
+- Contract Address: **{{CONTRACT_ADDRESS}}**
+- Source: **{{ABI_SOURCE_URL}}**
 
 ## Importing Packages By URL
 ```bash
