@@ -1,0 +1,32 @@
+{
+  "name": "@evm-abis/abis-api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start:prod": "bun src/index.ts",
+    "start:dev": "bun --hot src/index.ts",
+    "lint": "biome check .",
+    "lint:fix": "bun lint --apply",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/rate-limit": "^9.1.0",
+    "@npmcli/arborist": "^7.2.2",
+    "abitype": "^0.10.3",
+    "fastify": "^4.25.2",
+    "libnpmpublish": "^9.0.3",
+    "pacote": "^17.0.5",
+    "viem": "^2.0.6",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.1",
+    "@npm/types": "^1.0.2",
+    "@types/bun": "^1.0.1",
+    "@types/libnpmpublish": "^4.0.6",
+    "@types/npmcli__arborist": "^5.6.5",
+    "@types/pacote": "^11.1.8",
+    "typescript": "^5.3.3"
+  }
+}
