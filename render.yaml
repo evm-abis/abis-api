@@ -15,6 +15,14 @@ services:
         sync: false
       - key: POLYGONSCAN_API_KEY
         sync: false
+      - key: OPTIMISMSCAN_API_KEY
+        sync: false
+      - key: ARBISCAN_API_KEY
+        sync: false
+      - key: BSCSCAN_API_KEY
+        sync: false
+      - key: FTMSCAN_API_KEY
+        sync: false
       - key: NPM_TOKEN
         sync: false
     healthCheckPath: /monitoring/heartbeat
