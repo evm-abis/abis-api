@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: evm-abis-api
+    name: evmAbis-api
     region: frankfurt
     plan: starter
     env: docker
