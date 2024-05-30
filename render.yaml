@@ -1,9 +1,11 @@
 services:
   - type: web
     name: evmAbis-api
+    plan: free
     region: frankfurt
-    plan: starter
-    env: docker
+    runtime: node
+    buildCommand: bun i
+    startCommand: bun run start:prod
     envVars:
       - key: MEM_LIMIT
         value: 512
@@ -29,8 +31,3 @@ services:
     autoDeploy: true
     domains:
       - evm-abis.xyz
-    scaling:
-      minInstances: 2
-      maxInstances: 10
-      targetMemoryPercent: 70
-      targetCPUPercent: 70
